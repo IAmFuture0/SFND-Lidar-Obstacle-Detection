@@ -40,7 +40,7 @@ struct KdTree{
     target.push_back(targetPoint.x);
     target.push_back(targetPoint.y);
     target.push_back(targetPoint.z);
-    // searchHelperfunc(target, root, 0, distanceTol, ids);
+    searchHelperfunc(target, root, 0, distanceTol, ids);
     return ids;
   }
   
@@ -50,12 +50,14 @@ struct KdTree{
       if(distance < distanceTol){
       	ids.push_back(node->id);
       }
+      /*** ISSUE ***/
       if(node->point[depth%2] > target[depth%2] - distanceTol){
       	searchHelperfunc(target, node->left, depth+1, distanceTol, ids);
       }
       if(node->point[depth%2] < target[depth%2] + distanceTol){
       	searchHelperfunc(target, node->right, depth+1, distanceTol, ids);  
       }
+      /*** ISSUE ***/
     }
   }
 }; 
